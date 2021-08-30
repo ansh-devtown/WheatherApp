@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
             const weatherData = JSON.parse(data);
             // GETTING TEMPERATURE FROM DATA
             const temp = Math.floor(weatherData.main.temp);
+            const tempp = parseInt(temp - 273.15); 
             // GETTING WEATHER CONDITION
             const weatherDescription = weatherData.weather[0].description;
             // GETTING REALTIME WEATHER ICON NUMBER FROM JSON
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
             // NOW SEND THE WHOLE THING
             res.write(`<h1>Currently wheather is ${weatherDescription} in delhi.</h1>`);
             res.write("<img src=" + imageUrl +">");
-            res.write(`<h2>The temperature in Delhi is ${temp} Kelvin.</h2>`);
+            res.write(`<h2>The temperature in Delhi is ${tempp} celsius.</h2>`);
             res.send();
         });
     });
